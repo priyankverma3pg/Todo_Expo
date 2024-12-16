@@ -30,8 +30,8 @@ interface WelcomeScreenProps {
 
 const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ navigation }) => {
   const navigateToHome = () => {
-    // Navigate to Home screen with params
-    navigation.navigate("TodoList");
+    // Navigate to Home screen with params to block transitioning back to welcomescreen
+    navigation.replace("TodoList");
   };
 
   return (
