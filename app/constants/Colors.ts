@@ -1,5 +1,5 @@
 /**
- * A common file to have all the colors hardcoded so as to 
+ * A common file to have all the colors hardcoded so as to
  * refer from throughout the app
  */
 
@@ -22,5 +22,5 @@ export const ColorPallete = {
   placeholderTextColor: "#aaa",
   inputValueText: "#000",
   darkBorder: "#444",
-
+  containerBackground: "#DDDCD9",
 };

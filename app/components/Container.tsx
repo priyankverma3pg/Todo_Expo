@@ -1,5 +1,5 @@
 /**
- * Contains a set of styled components used at 
+ * Contains a set of styled components used at
  * various places in the app
  */
 import styled from "styled-components/native";
@@ -21,9 +21,13 @@ interface InputProps {
   borderColor?: string;
 }
 
-export const Container = styled.SafeAreaView<{ padding?: string }>`
+export const Container = styled.SafeAreaView<{
+  padding?: string;
+  backgroundColor?: string;
+}>`
   flex: 1;
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) =>
+    props.backgroundColor || props.theme.background};
   padding: ${(props) => props.padding || 0};
 `;
 
@@ -32,7 +36,7 @@ export const Text = styled.Text<{
   fontSize?: number;
   fontWeight?: string | number;
   padding?: string; // top, right, bottom, left
-  textAlign?: string
+  textAlign?: string;
 }>`
   color: ${(props) => props.color || props.theme.text};
   font-size: ${(props) => props.fontSize || 16}px;
@@ -45,7 +49,9 @@ export const Button = styled.TouchableOpacity<ButtonProps>`
   background-color: ${(props) =>
     props.disabled
       ? props.theme.buttonDisabledBackground || ColorPallete.white // Theme-based or fallback for disabled
-      : props.backgroundColor || props.theme.buttonBackground || ColorPallete.actionBack};
+      : props.backgroundColor ||
+        props.theme.buttonBackground ||
+        ColorPallete.actionBack};
   padding: ${(props) => props.padding || "10px 20px"};
   border-radius: ${(props) => props.borderRadius || 5}px;
   align-items: ${(props) => props.alignItems || "center"};
@@ -73,10 +79,13 @@ background-color: ${(props) => props.backgroundColor || "blue"}
 `;
 
 export const StyledInput = styled.TextInput<InputProps>`
-  background-color: ${(props) => props.theme.inputBackground || ColorPallete.listCardBack};
+  background-color: ${(props) =>
+    props.theme.inputBackground || ColorPallete.listCardBack};
   color: ${(props) => props.theme.text || ColorPallete.inputValueText};
   padding: 12px 15px;
-  border: 1px solid ${(props) => props.borderColor || props.theme.borderColor || ColorPallete.lightGrey};
+  border: 1px solid
+    ${(props) =>
+      props.borderColor || props.theme.borderColor || ColorPallete.lightGrey};
   border-radius: 8px;
   font-size: 16px;
   margin-bottom: 10px;

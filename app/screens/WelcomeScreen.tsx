@@ -12,11 +12,11 @@
  */
 
 import React from "react";
-import { Image } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import styled from "styled-components/native";
 import { RootStackParamList } from "../types";
 import { Container, Text, Button } from "../components/Container";
+import { ColorPallete } from "../constants/Colors";
 
 // Typing the navigation prop for the WelcomeScreen
 type WelcomeScreenNavigationProp = NativeStackNavigationProp<
@@ -35,36 +35,36 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ navigation }) => {
   };
 
   return (
-    <Container>
-      <ImageSection>
-        <Image
-          style={{ height: 300, width: 300, alignSelf: "center" }}
-          source={require("../../assets/images/todoIcon.png")}
-        />
+    <Container backgroundColor={ColorPallete.containerBackground}>
+      <ImageSection
+        resizeMode="cover"
+        source={require("../../assets/images/welcomeImage.jpg")}
+      >
+        <BottomSection>
+          <Text fontSize={28}>To-Do List </Text>
+          <Text padding="10px 0px 20px" textAlign="center">
+            This productive tool is designed to help you better manage your day
+            to day tasks conveniently!
+          </Text>
+          <Button width="80%" onPress={navigateToHome}>
+            <Text fontSize={22}>Let's Go! 🤝</Text>
+          </Button>
+        </BottomSection>
       </ImageSection>
-      <BottomSection>
-        <Text fontSize={28}>To-Do List </Text>
-        <Text padding="10px 0px 20px">
-          This productive tool is designed to help you better manage your day to
-          day tasks conveniently!
-        </Text>
-        <Button width="80%" onPress={navigateToHome}>
-          <Text fontSize={22}>Let's Go! 🤝</Text>
-        </Button>
-      </BottomSection>
     </Container>
   );
 };
 
 export default WelcomeScreen;
 
-const ImageSection = styled.View`
-  flex: 0.6;
-  background-color: ${(props) => props.theme.background};
+const ImageSection = styled.ImageBackground`
+  flex: 1;
+  justify-content: center;
 `;
 const BottomSection = styled.View`
-  flex: 0.4;
-  background-color: ${(props) => props.theme.background};
+  flex: 1;
+  background-color: transparent;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-bottom: 20px;
 `;

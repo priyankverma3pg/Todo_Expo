@@ -18,9 +18,8 @@ const App: React.FC = () => {
         <TodosProvider>
           <Stack.Navigator
             initialRouteName="Welcome"
-          
             screenOptions={{
-              headerBackButtonDisplayMode: 'minimal', // Hide the back button title
+              headerBackButtonDisplayMode: "minimal", // Hide the back button title
             }}
           >
             <Stack.Screen

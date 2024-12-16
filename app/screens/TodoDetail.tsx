@@ -22,6 +22,7 @@ import { Todo } from "../hooks/useFetch";
 import { filterTodos } from "../constants/Utils";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { TodoTypes } from "../constants/ApiConstants";
+import { useTheme } from "../contexts/ThemeProvider";
 
 // Typing the route prop for the TodoDetail screen
 type TodoDetailRouteProp = RouteProp<RootStackParamList, "TodoDetail">;
@@ -37,6 +38,7 @@ interface TodoDetailProps {
 
 const TodoDetail: React.FC<TodoDetailProps> = ({ route, navigation }) => {
   const { todoType } = route.params;
+  const { theme } = useTheme();
   const { globalTodos } = useTodos(); // Access todos from context
   const [todos, setTodos] = useState<Todo[]>([]);
   const [heading, setHeading] = useState<string>("");
@@ -46,12 +48,24 @@ const TodoDetail: React.FC<TodoDetailProps> = ({ route, navigation }) => {
     if (todoType === TodoTypes.completed) {
       navigation.setOptions({
         title: "Completed Todos", // Set the screen title
+        headerTitleStyle: {
+          color: theme.text,
+        },
+        headerStyle: {
+          backgroundColor: theme.background,
+        },
       });
       setTodos(filterTodos(globalTodos).completedTodos);
       setHeading("Hurray! 🥳, What a progress!");
     } else {
       navigation.setOptions({
         title: "Pending Todos", // Set the screen title
+        headerTitleStyle: {
+          color: theme.text,
+        },
+        headerStyle: {
+          backgroundColor: theme.background,
+        },
       });
       setHeading("Ohh! 🤓, Still need to speed up");
       setTodos(filterTodos(globalTodos).pendingTodos);
