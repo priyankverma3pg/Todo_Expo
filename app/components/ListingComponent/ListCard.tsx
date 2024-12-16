@@ -173,6 +173,7 @@ const CardWrapper = styled.View`
   shadow-offset: 0px 2px;
   shadow-opacity: 0.2;
   shadow-radius: 4px;
+  max-height: 100px
 `;
 
 const RowContainer = styled.View`
@@ -192,6 +193,9 @@ const StyledTextInput = styled.TextInput`
   font-size: 16px;
   color: ${ColorPallete.black};
   flex-wrap: wrap;
+  height: 100px;
+  textAlignVertical: top;  // Ensure the text starts from the top (Android only)
+
 `;
 
 const StyledText = styled(Text)<{ completed: boolean }>`

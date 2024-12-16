@@ -12,7 +12,7 @@
  * @param {Function} props.onToggleComplete - Callback function to toggle the completion status of a todo item.
  * @param {boolean} props.showActionButtons - Flag to show or hide action buttons (edit, delete, complete).
  * @param {Function} props.onAddTodo - Callback function to add a new todo item.
- * 
+ *
  * @example
  * <Listing
  *   data={todos}
@@ -27,7 +27,7 @@
  */
 
 import React from "react";
-import { FlatList, RefreshControl, View } from "react-native";
+import { FlatList, RefreshControl, StyleSheet, View } from "react-native";
 import ListCard from "./ListCard";
 import { Todo } from "../../hooks/useFetch";
 import { useTheme } from "../../contexts/ThemeProvider";
@@ -49,7 +49,6 @@ type ListingProps = {
   showActionButtons: boolean;
   onAddTodo?: () => void; // Callback for adding a TODO
 };
-
 
 const Listing: React.FC<ListingProps> = ({
   data,
@@ -106,7 +105,7 @@ const Listing: React.FC<ListingProps> = ({
               showActionButtons={showActionButtons}
             />
           )}
-          contentContainerStyle={{ paddingBottom: 20 }}
+          contentContainerStyle={styles.flatlistContainerStyle}
           ItemSeparatorComponent={() => <ItemSeparator />}
           onEndReached={onEndReached}
           onEndReachedThreshold={0.1}
@@ -117,6 +116,10 @@ const Listing: React.FC<ListingProps> = ({
 };
 
 export default Listing;
+
+const styles = StyleSheet.create({
+  flatlistContainerStyle: { padding: 20 },
+});
 
 // Styled Components
 const Wrapper = styled.View<{ backgroundColor: string }>`

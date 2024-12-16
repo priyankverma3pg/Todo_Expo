@@ -64,6 +64,8 @@ const InputModal: React.FC<ReusableModalProps> = ({
             onChangeText={setInputValue}
             value={inputValue}
             placeholderTextColor={ColorPallete.todoCompletedText}
+            multiline
+            numberOfLines={3}
           />
           <ButtonRow>
             <StyledButton disabled={inputValue === ""} activeOpacity={1} onPress={handleAdd}>
