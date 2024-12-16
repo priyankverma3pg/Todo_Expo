@@ -40,7 +40,6 @@ First, clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/priyankverma3pg/Todo_Expo.git
-cd todo-app
 ```
 
 ### 2. Install Dependencies
