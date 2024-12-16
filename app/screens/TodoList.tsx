@@ -230,17 +230,24 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
           </View>
         </TopView>
         <ThemeIcon
-          name={isDarkMode ? "light-mode" : "dark-mode"}
-          color={theme.text}
-          size={32}
           onPress={toggleTheme}
-        />
+        >
+          <StyledImage
+            source={
+              isDarkMode
+                ? require("../../assets/images/light.png")
+                : require("../../assets/images/moon.png")
+            }
+            width={40}
+            height={40}
+          />
+        </ThemeIcon>
       </GreetingSection>
 
       <GradientWrap>
         <GradientCard
           gradientColors={ColorPallete.greenGradient}
-          iconName="fact-check"
+          iconName={require("../../assets/images/checklist.png")}
           iconBackgoundColor={ColorPallete.greenBackGround}
           label="Completed"
           tapAction={() => {
@@ -253,7 +260,7 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
           gradientColors={ColorPallete.orangeGradient}
           gradientStart={{ x: 0, y: 0 }}
           gradientEnd={{ x: 1, y: 0 }}
-          iconName="pending-actions"
+          iconName={require("../../assets/images/pending.png")}
           iconBackgoundColor={ColorPallete.orangeBackGround}
           label="Pending"
           tapAction={() => {
@@ -313,7 +320,7 @@ const GradientWrap = styled.View`
   margin-vertical: 10px;
 `;
 
-const ThemeIcon = styled(MaterialIcons)`
+const ThemeIcon = styled.TouchableOpacity`
   padding-horizontal: 15px;
 `;
 

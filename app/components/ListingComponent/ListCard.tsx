@@ -8,7 +8,7 @@
  * @param {Function} props.onDelete - Callback function to handle deleting a todo.
  * @param {Function} props.onToggleComplete - Callback function to toggle the completion status of a todo.
  * @param {boolean} props.showActionButtons - Flag to show or hide action buttons (edit, delete, complete).
- * 
+ *
  * @example
  * <ListCard
  *   todo={todo}
@@ -21,8 +21,7 @@
 
 import React, { useCallback, useState } from "react";
 import { TouchableOpacity } from "react-native";
-import { Text } from "../Container";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Text, StyledImage } from "../Container";
 import styled from "styled-components/native";
 import { Todo } from "../../hooks/useFetch";
 import debounce from "lodash.debounce"; // Import the debounce function
@@ -30,10 +29,10 @@ import { ColorPallete } from "../../constants/Colors";
 
 type ListCardProps = {
   todo: Todo;
-  onEdit?: (id: number, updates: Todo) => Promise<void>; 
-  onDelete?: (selectedTodo: Todo) => void; 
-  onToggleComplete?: (id: number, updates: Todo) => Promise<void>; 
-  showActionButtons: boolean; 
+  onEdit?: (id: number, updates: Todo) => Promise<void>;
+  onDelete?: (selectedTodo: Todo) => void;
+  onToggleComplete?: (id: number, updates: Todo) => Promise<void>;
+  showActionButtons: boolean;
 };
 
 const ListCard: React.FC<ListCardProps> = ({
@@ -58,25 +57,24 @@ const ListCard: React.FC<ListCardProps> = ({
     }
   };
 
-
-/**
- * Debounced handler to toggle the completion status of a todo item.
- *
- * @callback HandleToggleCallback
- * @param {number} id - The unique identifier of the todo item.
- * @param {boolean} currentStatus - The current completion status of the todo item.
- *
- * @constant {Function} handleToggle
- * @param {HandleToggleCallback} - A debounced callback function executed after a 500ms delay.
- *
- * @description
- * This function uses a debounced callback to update the `completed` status of a todo item.
- * Debounce is used to control the API hits while toggling the Todo complete status
- * It ensures the callback `onToggleComplete` is triggered with the updated status.
- *
- * @example
- * handleToggle(1, true);
- */
+  /**
+   * Debounced handler to toggle the completion status of a todo item.
+   *
+   * @callback HandleToggleCallback
+   * @param {number} id - The unique identifier of the todo item.
+   * @param {boolean} currentStatus - The current completion status of the todo item.
+   *
+   * @constant {Function} handleToggle
+   * @param {HandleToggleCallback} - A debounced callback function executed after a 500ms delay.
+   *
+   * @description
+   * This function uses a debounced callback to update the `completed` status of a todo item.
+   * Debounce is used to control the API hits while toggling the Todo complete status
+   * It ensures the callback `onToggleComplete` is triggered with the updated status.
+   *
+   * @example
+   * handleToggle(1, true);
+   */
   const handleToggle = useCallback(
     debounce((id: number, currentStatus: boolean) => {
       todo.completed = currentStatus;
@@ -113,10 +111,15 @@ const ListCard: React.FC<ListCardProps> = ({
             <TouchableOpacity
               onPress={() => handleToggle(todo.id, !todo.completed)}
             >
-              <MaterialIcons
-                name={todo.completed ? "check-box" : "check-box-outline-blank"}
-                size={24}
-                color={
+              <StyledImage
+                source={
+                  todo.completed
+                    ? require("../../../assets/images/checkbox.png")
+                    : require("../../../assets/images/unchecked.png")
+                }
+                width={24}
+                height={24}
+                tintColor={
                   todo.completed
                     ? ColorPallete.buttonGreenBackground
                     : ColorPallete.lightGrey
@@ -130,18 +133,20 @@ const ListCard: React.FC<ListCardProps> = ({
             <>
               {isEditing ? (
                 <TouchableOpacity onPress={handleSave}>
-                  <MaterialIcons
-                    name="save"
-                    size={24}
-                    color={ColorPallete.buttonGreenBackground}
+                  <StyledImage
+                    source={require("../../../assets/images/save.png")}
+                    width={20}
+                    height={20}
+                    tintColor={ColorPallete.buttonGreenBackground}
                   />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity onPress={() => setIsEditing(true)}>
-                  <MaterialIcons
-                    name="edit"
-                    size={24}
-                    color={ColorPallete.actionBack}
+                  <StyledImage
+                    source={require("../../../assets/images/edit.png")}
+                    width={24}
+                    height={24}
+                    tintColor={ColorPallete.actionBack}
                   />
                 </TouchableOpacity>
               )}
@@ -151,7 +156,12 @@ const ListCard: React.FC<ListCardProps> = ({
           {/* Delete Button */}
           {showActionButtons && (
             <TouchableOpacity onPress={() => onDelete?.(todo)}>
-              <MaterialIcons name="delete" size={24} color={ColorPallete.red} />
+              <StyledImage
+                source={require("../../../assets/images/delete.png")}
+                width={20}
+                height={20}
+                tintColor={ColorPallete.red}
+              />
             </TouchableOpacity>
           )}
         </ButtonContainer>
@@ -173,7 +183,7 @@ const CardWrapper = styled.View`
   shadow-offset: 0px 2px;
   shadow-opacity: 0.2;
   shadow-radius: 4px;
-  max-height: 100px
+  max-height: 100px;
 `;
 
 const RowContainer = styled.View`
@@ -193,9 +203,6 @@ const StyledTextInput = styled.TextInput`
   font-size: 16px;
   color: ${ColorPallete.black};
   flex-wrap: wrap;
-  height: 100px;
-  textAlignVertical: top;  // Ensure the text starts from the top (Android only)
-
 `;
 
 const StyledText = styled(Text)<{ completed: boolean }>`

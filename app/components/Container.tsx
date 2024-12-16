@@ -95,9 +95,14 @@ export const StyledImage = styled.Image<{
   width: number;
   height: number;
   borderRadius?: number;
+  tintColor?: string;
+  marginBottom?: number;
+  padding?: string;
 }>`
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
-  margin-bottom: 20px;
+  margin-bottom: ${(props) => props.marginBottom};
   border-radius: ${(props) => props.borderRadius || 0}px;
+  tint-color: ${(props) => props.tintColor};
+  padding: ${(props) => props.padding || 0};
 `;

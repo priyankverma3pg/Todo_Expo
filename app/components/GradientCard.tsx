@@ -26,15 +26,14 @@
 
 import React from "react";
 import { GradientContainer } from "./GradientContainer";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { TouchableOpacity, View } from "react-native";
-import { Text } from "./Container";
+import { ImageSourcePropType, TouchableOpacity, View } from "react-native";
+import { StyledImage, Text } from "./Container";
 import { LinearGradientPoint } from "expo-linear-gradient";
 import { ColorPallete } from "../constants/Colors";
 import styled from "styled-components/native";
 
 interface GradientCardProps {
-  iconName: "fact-check" | "pending-actions";
+  iconName: ImageSourcePropType;
   iconBackgoundColor: string;
   label: string;
   gradientColors: string[];
@@ -65,11 +64,17 @@ const GradientCard: React.FC<GradientCardProps> = (props) => {
       <TouchableOpacity onPress={tapAction}>
         <CardRowWrap>
           <IconBackground style={{ backgroundColor: iconBackgoundColor }}>
-            <MaterialIcons
+            {/* <MaterialIcons
               name={iconName}
               color={ColorPallete.white}
               size={24}
-            />
+            /> */}
+             <StyledImage
+                    source={iconName}
+                    width={20}
+                    height={20}
+                    tintColor={ColorPallete.white}
+                  />
           </IconBackground>
           <View>
             <Text fontWeight={700}>{label}</Text>
