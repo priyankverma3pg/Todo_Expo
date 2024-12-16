@@ -19,6 +19,7 @@ This is a Todo application built using Expo, React Native, and TypeScript. The a
 - **Styled-components**: For styling the components
 - **React Context API**: For global state management (todos, theme)
 - **Toast**: For success/error messages
+- **Jest**: For Unit testing
 
 ## Setup Steps
 
@@ -79,11 +80,13 @@ Scan the QR code shown in the terminal when running expo start.
 Here’s a brief overview of the folder structure of the app:
 
 ```bash
+__tests__/         # contains test cases
+
 /assets
   /images          # Store images used in the app (e.g., icons, logos)
 
 /components
-  /CommonStyledComponents       # Shared container components (e.g., Button, Text, Container)
+  /Container       # Shared container components (e.g., Button, Text, Container)
   /GradientCard    # Gradient Card component used for the UI
   /ListingComponent# Displays the list of todos
   /InputModal      # Modal for adding new todos
