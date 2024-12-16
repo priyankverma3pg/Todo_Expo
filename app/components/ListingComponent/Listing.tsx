@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { FlatList, RefreshControl, View, StyleSheet } from "react-native";
+import { FlatList, RefreshControl, View } from "react-native";
 import ListCard from "./ListCard";
 import { Todo } from "../../hooks/useFetch";
 import { useTheme } from "../../contexts/ThemeProvider";
 import { Button, ButtonText, Text } from "../Container"; // Styled components imported
 import NotFound from "../NotFoundComponent";
+import styled from "styled-components/native";
 
 type ListingProps = {
   listHeading: string;
@@ -36,9 +37,9 @@ const Listing: React.FC<ListingProps> = ({
   const { theme } = useTheme();
 
   return (
-    <View style={[styles.wrap, { backgroundColor: theme.background }]}>
+    <Wrapper backgroundColor={theme.background}>
       {/* Header Section */}
-      <View style={styles.header}>
+      <Header>
         <Text fontSize={28} color={theme.text} padding="20px 0px">
           {listHeading}
         </Text>
@@ -55,13 +56,12 @@ const Listing: React.FC<ListingProps> = ({
             <ButtonText> ╋ Add New</ButtonText>
           </Button>
         )}
-      </View>
+      </Header>
 
       {!data.length ? (
         <NotFound
           imageSource={require("../../../assets/images/cnf.jpg")}
           title={"No content found!"}
-          
           description={
             "We could not find any todos, but you can still create one"
           }
@@ -79,33 +79,31 @@ const Listing: React.FC<ListingProps> = ({
               showActionButtons={showActionButtons}
             />
           )}
-          contentContainerStyle={styles.padBottom}
-          ItemSeparatorComponent={() => <View style={styles.itemSeparator} />}
+          contentContainerStyle={{ paddingBottom: 20 }}
+          ItemSeparatorComponent={() => <ItemSeparator />}
           onEndReached={onEndReached}
           onEndReachedThreshold={0.1}
         />
       )}
-    </View>
+    </Wrapper>
   );
 };
 
 export default Listing;
 
-const styles = StyleSheet.create({
-  wrap: {
-    flex: 1,
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-  },
-  itemSeparator: {
-    height: 10,
-  },
-  padBottom: {
-    paddingBottom: 20,
-  },
-});
+// Styled Components
+const Wrapper = styled.View<{ backgroundColor: string }>`
+  flex: 1;
+  background-color: ${(props) => props.backgroundColor};
+`;
+
+const Header = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+`;
+
+const ItemSeparator = styled.View`
+  height: 10px;
+`;

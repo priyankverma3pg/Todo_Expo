@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import styled from "styled-components/native";
 import { Container, StyledImage, Text } from "../components/Container";
 import useFetch, { Todo } from "../hooks/useFetch";
@@ -174,7 +174,7 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
   return (
     <Container padding="50px 0 0">
       <GreetingSection>
-        <View style={styles.topView}>
+        <TopView>
           <StyledImage
             source={require("../../assets/images/man.png")}
             width={50}
@@ -184,17 +184,16 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
             <Text fontSize={24}>Hey, User 👋</Text>
             <Text fontSize={14}>Your daily adventure starts now</Text>
           </View>
-        </View>
-        <MaterialIcons
+        </TopView>
+        <ThemeIcon
           name={isDarkMode ? "light-mode" : "dark-mode"}
           color={theme.text}
           size={32}
           onPress={toggleTheme}
-          style={styles.themeIcon}
         />
       </GreetingSection>
 
-      <View style={styles.gradientWrap}>
+      <GradientWrap>
         <GradientCard
           gradientColors={ColorPallete.greenGradient}
           iconName="fact-check"
@@ -217,7 +216,7 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
             navigation.navigate("TodoDetail", { todoType: TodoTypes.pending });
           }}
         />
-      </View>
+      </GradientWrap>
 
       {loading ? (
         <ActivityWrap>
@@ -249,32 +248,30 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
     </Container>
   );
 };
-//TODO: Inline CSS
-//TODO: Unused code
-//TODO: see more
-export default TodoList;
 
-const styles = StyleSheet.create({
-  topView: {
-    flexDirection: "row",
-    alignItems: "center",
-    columnGap: "5%",
-    paddingHorizontal: 10,
-  },
-  gradientWrap: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    marginVertical: 10,
-  },
-  themeIcon: {
-    paddingHorizontal: 15,
-  },
-});
+export default TodoList;
 
 const GreetingSection = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+
+const TopView = styled.View`
+  flex-direction: row;
+  align-items: center;
+  column-gap: 5%;
+  padding-horizontal: 10px;
+`;
+
+const GradientWrap = styled.View`
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-vertical: 10px;
+`;
+
+const ThemeIcon = styled(MaterialIcons)`
+  padding-horizontal: 15px;
 `;
 
 const ActivityWrap = styled.View`
