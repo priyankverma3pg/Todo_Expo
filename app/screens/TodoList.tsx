@@ -62,7 +62,6 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
       );
       setLoading(loading);
       if (data) {
-        console.info("priyank Here is the data", data);
         setGlobalTodos([]); // Empty existing TODOS on a fresh API CALL
         setTodos((prevTodos) => [...prevTodos, ...data.todos]);
         setHasMore(data.todos.length > 0);
@@ -148,7 +147,6 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
     };
     try {
       const { data } = await triggerFetch(`${ApiBaseURL}/add`, "POST", newTodo);
-      console.info("Priyank here is the response from the Srever", data);
       const newTodoData = Array.isArray(data) ? data[0] : data; // In case response is wrapped in an array
       if (data) {
         newTodoData.addedLocally = true;

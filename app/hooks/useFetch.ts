@@ -38,7 +38,6 @@ const useFetch = <T>(): FetchResult<T> => {
     setError(null);
 
     try {
-      console.info("Priyank In here", { url, body });
       // Check for internet connectivity
       const networkState = await Network.getNetworkStateAsync();
       const isOnline =
@@ -65,7 +64,6 @@ const useFetch = <T>(): FetchResult<T> => {
       }
 
       // Make API call
-      console.info("priyank options", options);
       const response = await fetch(fetchUrl, options);
 
       if (!response.ok) {
@@ -73,7 +71,6 @@ const useFetch = <T>(): FetchResult<T> => {
       }
 
       const result = await response.json();
-      console.info("priyank response", result);
       result.id = body?.id; // so that we don't get duplicate Key issue, because server always return 255 as `id`
       setData(result);
 
@@ -98,8 +95,6 @@ const useFetch = <T>(): FetchResult<T> => {
     method: "GET" | "POST" | "PUT" | "DELETE",
     body?: Todo
   ): Promise<{ data: T | null; error: string | null; loading: boolean }> => {
-    console.info("Priyank inhere body", body);
-
     if (method === "GET") {
       return { data: { todos: globalTodos } as T, error: null, loading: false };
     } else if (method === "POST" && body) {
@@ -111,7 +106,6 @@ const useFetch = <T>(): FetchResult<T> => {
       );
       return { data: body as T, error: null, loading: false };
     } else if (method === "DELETE" && body) {
-      console.info("Priyank inhere", body);
       setGlobalTodos((prev) => prev.filter((todo) => todo.id !== body.id));
       return { data: body as T, error: null, loading: false };
     }
@@ -129,7 +123,6 @@ const useFetch = <T>(): FetchResult<T> => {
     body?: Todo
   ) => {
     if (method === "GET") {
-      console.info("Priyank result", result);
       setGlobalTodos(result.todos);
     } else if (method === "POST" && body) {
       setGlobalTodos((prev) => [...prev, { ...result, addedLocally: false }]);
