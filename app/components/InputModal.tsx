@@ -68,11 +68,22 @@ const InputModal: React.FC<ReusableModalProps> = ({
             numberOfLines={3}
           />
           <ButtonRow>
-            <StyledButton disabled={inputValue === ""} activeOpacity={1} onPress={handleAdd}>
+            <StyledButton
+              disabled={inputValue === ""}
+              activeOpacity={1}
+              onPress={handleAdd}
+            >
               <ButtonText>Add</ButtonText>
             </StyledButton>
-            <TouchableOpacity onPress={onClose}>
-              <Text  fontWeight={500} color={ColorPallete.red}>Cancel</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setInputValue("");
+                onClose();
+              }}
+            >
+              <Text fontWeight={500} color={ColorPallete.red}>
+                Cancel
+              </Text>
             </TouchableOpacity>
           </ButtonRow>
         </ModalContainer>
@@ -113,11 +124,11 @@ const ButtonRow = styled.View`
 `;
 
 const StyledButton = styled.TouchableOpacity`
-  background-color: ${(props) => props.disabled ? ColorPallete.grey : ColorPallete.greenBackGround};
+  background-color: ${(props) =>
+    props.disabled ? ColorPallete.grey : ColorPallete.greenBackGround};
   padding: 10px 15px;
   border-radius: 8px;
   align-items: center;
-
 `;
 
 const ButtonText = styled.Text`
