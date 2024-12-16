@@ -1,3 +1,21 @@
+/**
+ * NotFound component is a flexible UI element to display when no content is found. It shows an image, title, and description 
+ * with customizable content. The component adapts to different screen sizes using responsive design.
+ *
+ * @component
+ * @param {Object} props - The properties for the NotFound component.
+ * @param {string} props.title - The title text to be displayed under the image
+ * @param {string} props.description - A description text providing more context to the user.
+ * @param {any} props.imageSource - The image source to be displayed (can be an image URL or local image asset).
+ *
+ * @example
+ * <NotFound
+ *   title="No Data Available"
+ *   description="We couldn't find any data matching your search. Please try again later."
+ *   imageSource={require('../assets/images/no-data.png')}
+ * />
+ */
+
 import React from "react";
 import { useWindowDimensions } from "react-native";
 import styled from "styled-components/native";

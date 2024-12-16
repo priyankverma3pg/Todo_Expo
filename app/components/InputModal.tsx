@@ -1,7 +1,29 @@
+/**
+ * InputModal component is a reusable modal that displays an input field and allows the user to submit a value.
+ * It has a customizable title, placeholder, and provides actions to confirm or close the modal.
+ *
+ * @component
+ * @param {Object} props - The properties for the InputModal component.
+ * @param {boolean} props.visible - Controls the visibility of the modal. Set to `true` to display, `false` to hide.
+ * @param {string} props.title - The title to be displayed at the top of the modal.
+ * @param {string} [props.placeholder="Enter value"] - The placeholder text for the input field (optional, default is "Enter value").
+ * @param {Function} props.onClose - Callback function to be called when the modal is closed (e.g., when the "Cancel" button is pressed).
+ * @param {Function} props.onConfirm - Callback function to be called when the "Add" button is pressed, passing the input value as an argument.
+ *
+ * @example
+ * <InputModal
+ *   visible={isModalVisible}
+ *   title="Add Todo"
+ *   placeholder="Enter your task"
+ *   onClose={handleCloseModal}
+ *   onConfirm={handleAddTodo}
+ * />
+ */
+
 import React, { useState } from "react";
 import { Modal, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import { Text } from "./Container"; // Assuming Text is from your Container component
+import { Text } from "./Container";
 import { ColorPallete } from "../constants/Colors";
 
 // Props for the InputModal

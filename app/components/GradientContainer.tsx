@@ -1,3 +1,33 @@
+/**
+ * GradientContainer component is a styled wrapper that applies a linear gradient background to its children.
+ * It allows customization of gradient colors, border radius, padding, dimensions, and gradient direction.
+ *
+ * @component
+ * @param {Object} props - The properties for the GradientContainer component.
+ * @param {string[]} props.colors - An array of at least two colors to be used for the gradient background.
+ * @param {number} [props.borderRadius] - The border radius of the container (optional).
+ * @param {string} [props.padding] - The padding value for the container (optional).
+ * @param {number|string} [props.height] - The height of the container (optional).
+ * @param {number|string} [props.width] - The width of the container (optional).
+ * @param {LinearGradientPoint} [props.start] - The starting point of the gradient (optional).
+ * @param {LinearGradientPoint} [props.end] - The ending point of the gradient (optional).
+ *
+ * @returns {React.Component} The GradientContainer component.
+ *
+ * @example
+ * <GradientContainer
+ *   colors={['#FF5733', '#FFBD33']}
+ *   borderRadius={10}
+ *   padding="10px"
+ *   height={100}
+ *   width={200}
+ *   start={{ x: 0, y: 0 }}
+ *   end={{ x: 1, y: 1 }}
+ * >
+ *   <Text>Content goes here</Text>
+ * </GradientContainer>
+ */
+
 import React from "react";
 import styled from "styled-components/native";
 import {

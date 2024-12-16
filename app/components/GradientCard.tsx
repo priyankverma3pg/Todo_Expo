@@ -1,3 +1,29 @@
+/**
+ * GradientCard component displays a card with a gradient background, an icon, and a label. 
+ * It allows the user to tap on the card to trigger an optional action.
+ *
+ * @component
+ * @param {Object} props - The properties for the GradientCard component.
+ * @param {("fact-check" | "pending-actions")} props.iconName - The name of the icon to be displayed in the card.
+ * @param {string} props.iconBackgoundColor - The background color of the icon's container.
+ * @param {string} props.label - The label to be displayed on the card.
+ * @param {string[]} props.gradientColors - An array of colors to be used in the gradient background of the card.
+ * @param {LinearGradientPoint} [props.gradientStart] - The starting point of the gradient (optional).
+ * @param {LinearGradientPoint} [props.gradientEnd] - The ending point of the gradient (optional).
+ * @param {Function} [props.tapAction] - The function to be called when the card is tapped (optional).
+ *
+ * @example
+ * <GradientCard
+ *   iconName="fact-check"
+ *   iconBackgoundColor="#FF5733"
+ *   label="Task Overview"
+ *   gradientColors={["#FF7F50", "#FFD700"]}
+ *   gradientStart={{ x: 0, y: 0 }}
+ *   gradientEnd={{ x: 1, y: 1 }}
+ *   tapAction={handleCardTap}
+ * />
+ */
+
 import React from "react";
 import { GradientContainer } from "./GradientContainer";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";

@@ -1,3 +1,24 @@
+/**
+ * ListCard component displays a todo item with editable fields and action buttons for edit, delete, and toggle completion.
+ *
+ * @component
+ * @param {Object} props - The properties for the ListCard component.
+ * @param {Todo} props.todo - The todo object containing id, todo text, and completion status.
+ * @param {Function} props.onEdit - Callback function to handle editing a todo.
+ * @param {Function} props.onDelete - Callback function to handle deleting a todo.
+ * @param {Function} props.onToggleComplete - Callback function to toggle the completion status of a todo.
+ * @param {boolean} props.showActionButtons - Flag to show or hide action buttons (edit, delete, complete).
+ * 
+ * @example
+ * <ListCard
+ *   todo={todo}
+ *   onEdit={handleEdit}
+ *   onDelete={handleDelete}
+ *   onToggleComplete={handleToggleComplete}
+ *   showActionButtons={true}
+ * />
+ */
+
 import React, { useCallback, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { Text } from "../Container";
@@ -9,10 +30,10 @@ import { ColorPallete } from "../../constants/Colors";
 
 type ListCardProps = {
   todo: Todo;
-  onEdit?: (id: number, updates: Todo) => Promise<void>;
-  onDelete?: (selectedTodo: Todo) => void;
-  onToggleComplete?: (id: number, updates: Todo) => Promise<void>;
-  showActionButtons: boolean;
+  onEdit?: (id: number, updates: Todo) => Promise<void>; 
+  onDelete?: (selectedTodo: Todo) => void; 
+  onToggleComplete?: (id: number, updates: Todo) => Promise<void>; 
+  showActionButtons: boolean; 
 };
 
 const ListCard: React.FC<ListCardProps> = ({
@@ -25,6 +46,10 @@ const ListCard: React.FC<ListCardProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(todo.todo);
 
+  /**
+   * Function trims the extra space and calls the mapped onEdit method with Id, and Todo as the arguement
+   * also toggles the editing state to switch the icon used
+   */
   const handleSave = () => {
     if (editValue.trim()) {
       todo.todo = editValue;
@@ -33,6 +58,25 @@ const ListCard: React.FC<ListCardProps> = ({
     }
   };
 
+
+/**
+ * Debounced handler to toggle the completion status of a todo item.
+ *
+ * @callback HandleToggleCallback
+ * @param {number} id - The unique identifier of the todo item.
+ * @param {boolean} currentStatus - The current completion status of the todo item.
+ *
+ * @constant {Function} handleToggle
+ * @param {HandleToggleCallback} - A debounced callback function executed after a 500ms delay.
+ *
+ * @description
+ * This function uses a debounced callback to update the `completed` status of a todo item.
+ * Debounce is used to control the API hits while toggling the Todo complete status
+ * It ensures the callback `onToggleComplete` is triggered with the updated status.
+ *
+ * @example
+ * handleToggle(1, true);
+ */
   const handleToggle = useCallback(
     debounce((id: number, currentStatus: boolean) => {
       todo.completed = currentStatus;

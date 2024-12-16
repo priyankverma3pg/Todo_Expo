@@ -1,3 +1,7 @@
+/**
+ * Contains the different color schemes 'light' and 'dark'
+ * to be used according to the mode set
+ */
 import { ColorPallete } from "./Colors";
 
 export const lightTheme = {

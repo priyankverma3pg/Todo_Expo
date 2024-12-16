@@ -1,9 +1,21 @@
+/**
+ * WelcomeScreen component that displays a welcome message, an image, and a button
+ * that navigates to the TodoList screen. This screen serves as an introduction to
+ * the app and encourages users to start managing their tasks.
+ *
+ * @component
+ * @example
+ * <WelcomeScreen navigation={navigation} />
+ *
+ * @param {WelcomeScreenProps} props - The props for the WelcomeScreen component.
+ * @param {WelcomeScreenNavigationProp} props.navigation - The navigation prop to navigate between screens.
+ */
+
 import React from "react";
 import { Image } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import styled from "styled-components/native";
-
-import { RootStackParamList } from "../types"; // Import your types
+import { RootStackParamList } from "../types";
 import { Container, Text, Button } from "../components/Container";
 
 // Typing the navigation prop for the WelcomeScreen

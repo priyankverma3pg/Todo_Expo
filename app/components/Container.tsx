@@ -1,3 +1,7 @@
+/**
+ * Contains a set of styled components used at 
+ * various places in the app
+ */
 import styled from "styled-components/native";
 import { ColorPallete } from "../constants/Colors";
 

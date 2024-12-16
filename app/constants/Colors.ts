@@ -1,3 +1,8 @@
+/**
+ * A common file to have all the colors hardcoded so as to 
+ * refer from throughout the app
+ */
+
 export const ColorPallete = {
   white: "white",
   black: "black",

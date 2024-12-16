@@ -1,3 +1,16 @@
+/**
+ * TodoList screen component that displays a list of todos and allows actions such as
+ * adding, editing, deleting, and viewing todos. It supports infinite scrolling, fetches
+ * todos from an API, and provides a modal to add new todos.
+ *
+ * @component
+ * @example
+ * <TodoList navigation={navigation} />
+ *
+ * @param {TodoScreenProps} props - The props for the TodoList component.
+ * @param {TodoListNavigationProps} props.navigation - The navigation prop to navigate between screens.
+ */
+
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import styled from "styled-components/native";
@@ -53,6 +66,13 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
     setGlobalTodos(todos);
   }, [todos, globalTodos]);
 
+  /**
+   * Fetch todos from the API and update the state and context.
+   * Supports pagination and updates the `todos` state with new data.
+   *
+   * @param {number} skip - The number of todos to skip for pagination.
+   * @param {number} limit - The maximum number of todos to fetch per request.
+   */
   const getTodos = async (skip: number, limit: number) => {
     try {
       const { data, loading } = await triggerFetch(
@@ -70,12 +90,21 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
     }
   };
 
+  /**
+   * Load more todos by incrementing the `skip` value for pagination.
+   */
   const handleLoadMore = () => {
     if (hasMore) {
       setSkip((prevSkip) => prevSkip + limit);
     }
   };
 
+  /**
+   * Edit an existing todo by sending a PUT request to the API and updating the state.
+   *
+   * @param {number} id - The ID of the todo to be edited.
+   * @param {Todo} updates - The updated todo data.
+   */
   const handleEditTodo = async (id: number, updates: Todo) => {
     try {
       const { data } = await triggerFetch(
@@ -107,6 +136,11 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
     }
   };
 
+  /**
+   * Delete a selected todo by sending a DELETE request to the API and updating the state.
+   *
+   * @param {Todo} selectedTodo - The todo that should be deleted.
+   */
   const handleDelete = async (selectedTodo: Todo) => {
     try {
       const { data } = await triggerFetch(
@@ -136,6 +170,11 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
     }
   };
 
+  /**
+   * Add a new todo by sending a POST request to the API and updating the state with the new todo.
+   *
+   * @param {string} title - The title of the new todo to be added.
+   */
   const handleAddTodo = async (title: string) => {
     const newTodo: Todo = {
       todo: title,
@@ -167,6 +206,11 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
     }
   };
 
+  /**
+   * Show a toast notification with a given configuration.
+   *
+   * @param {ShowToast} config - The configuration object for the toast notification.
+   */
   const showToast = (config: ShowToast) => {
     Toast.show(config);
   };
@@ -232,7 +276,6 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
             onEndReached={handleLoadMore}
             onToggleComplete={handleEditTodo}
             showActionButtons
-            showActionButton
             onAddTodo={() => setModalVisible(true)}
           />
 

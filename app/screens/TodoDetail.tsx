@@ -1,5 +1,18 @@
+/**
+ * TodoDetail screen component that displays a list of either completed or pending todos.
+ * It uses route parameters to determine the todo type (completed or pending) and updates
+ * the screen's heading and list accordingly.
+ *
+ * @component
+ * @example
+ * <TodoDetail route={route} navigation={navigation} />
+ *
+ * @param {TodoDetailProps} props - The props for the TodoDetail component.
+ * @param {TodoDetailRouteProp} props.route - The route prop containing the todoType.
+ * @param {TodoDetailNavigationProp} props.navigation - The navigation prop to manage screen options and navigation actions.
+ */
+
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "../types"; // Import the types
 import { useTodos } from "../contexts/TodosProvider";
@@ -32,13 +45,13 @@ const TodoDetail: React.FC<TodoDetailProps> = ({ route, navigation }) => {
     // set the listing according to the type of todo selected by the user
     if (todoType === TodoTypes.completed) {
       navigation.setOptions({
-        title: "Completed Todos",
+        title: "Completed Todos", // Set the screen title
       });
       setTodos(filterTodos(globalTodos).completedTodos);
       setHeading("Hurray! 🥳, What a progress!");
     } else {
       navigation.setOptions({
-        title: "Pending Todos",
+        title: "Pending Todos", // Set the screen title
       });
       setHeading("Ohh! 🤓, Still need to speed up");
       setTodos(filterTodos(globalTodos).pendingTodos);
