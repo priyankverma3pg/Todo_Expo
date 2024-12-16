@@ -79,7 +79,7 @@ const Listing: React.FC<ListingProps> = ({
             width="auto"
             onPress={onAddTodo}
           >
-            <ButtonText> ╋ Add New</ButtonText>
+            <ButtonText> + Add New</ButtonText>
           </Button>
         )}
       </Header>
