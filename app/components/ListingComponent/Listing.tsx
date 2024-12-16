@@ -31,7 +31,7 @@ import { FlatList, RefreshControl, StyleSheet, View } from "react-native";
 import ListCard from "./ListCard";
 import { Todo } from "../../hooks/useFetch";
 import { useTheme } from "../../contexts/ThemeProvider";
-import { Button, ButtonText, Text } from "../Container"; // Styled components imported
+import { Button, ButtonText, Text } from "../CommonStyledComponents"; // Styled components imported
 import NotFound from "../NotFoundComponent";
 import styled from "styled-components/native";
 

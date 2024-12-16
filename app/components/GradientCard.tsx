@@ -27,7 +27,7 @@
 import React from "react";
 import { GradientContainer } from "./GradientContainer";
 import { ImageSourcePropType, TouchableOpacity, View } from "react-native";
-import { StyledImage, Text } from "./Container";
+import { StyledImage, Text } from "./CommonStyledComponents";
 import { LinearGradientPoint } from "expo-linear-gradient";
 import { ColorPallete } from "../constants/Colors";
 import styled from "styled-components/native";

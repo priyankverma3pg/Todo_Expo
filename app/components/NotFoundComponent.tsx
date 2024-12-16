@@ -20,7 +20,7 @@ import React from "react";
 import { useWindowDimensions } from "react-native";
 import styled from "styled-components/native";
 import { useTheme } from "../contexts/ThemeProvider";
-import { StyledImage, Text } from "./Container";
+import { StyledImage, Text } from "./CommonStyledComponents";
 import { ColorPallete } from "../constants/Colors";
 
 interface NotFoundProps {

@@ -21,7 +21,7 @@
 
 import React, { useCallback, useState } from "react";
 import { TouchableOpacity } from "react-native";
-import { Text, StyledImage } from "../Container";
+import { Text, StyledImage } from "../CommonStyledComponents";
 import styled from "styled-components/native";
 import { Todo } from "../../hooks/useFetch";
 import debounce from "lodash.debounce"; // Import the debounce function

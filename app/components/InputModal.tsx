@@ -23,7 +23,7 @@
 import React, { useState } from "react";
 import { Modal, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import { Text } from "./Container";
+import { Text } from "./CommonStyledComponents";
 import { ColorPallete } from "../constants/Colors";
 
 // Props for the InputModal

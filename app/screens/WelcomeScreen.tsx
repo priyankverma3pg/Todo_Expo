@@ -15,7 +15,7 @@ import React from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import styled from "styled-components/native";
 import { RootStackParamList } from "../types";
-import { Container, Text, Button } from "../components/Container";
+import { Container, Text, Button } from "../components/CommonStyledComponents";
 import { ColorPallete } from "../constants/Colors";
 
 // Typing the navigation prop for the WelcomeScreen

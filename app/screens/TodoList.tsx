@@ -14,7 +14,7 @@
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import styled from "styled-components/native";
-import { Container, StyledImage, Text } from "../components/Container";
+import { Container, StyledImage, Text } from "../components/CommonStyledComponents";
 import useFetch, { Todo } from "../hooks/useFetch";
 import { useTheme } from "../contexts/ThemeProvider";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
