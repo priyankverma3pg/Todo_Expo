@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   iconBackground: {
     alignContent: "center",
     padding: 10,
-    backgroundColor: "green",
+    backgroundColor: ColorPallete.greenBackGround,
     borderRadius: 50,
   },
   cardRowWrap: {

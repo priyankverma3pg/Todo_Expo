@@ -41,7 +41,7 @@ export const Button = styled.TouchableOpacity<ButtonProps>`
   background-color: ${(props) =>
     props.disabled
       ? props.theme.buttonDisabledBackground || ColorPallete.white // Theme-based or fallback for disabled
-      : props.backgroundColor || props.theme.buttonBackground || "#007bff"};
+      : props.backgroundColor || props.theme.buttonBackground || ColorPallete.actionBack};
   padding: ${(props) => props.padding || "10px 20px"};
   border-radius: ${(props) => props.borderRadius || 5}px;
   align-items: ${(props) => props.alignItems || "center"};
@@ -69,10 +69,10 @@ background-color: ${(props) => props.backgroundColor || "blue"}
 `;
 
 export const StyledInput = styled.TextInput<InputProps>`
-  background-color: ${(props) => props.theme.inputBackground || "#fff"};
-  color: ${(props) => props.theme.text || "#000"};
+  background-color: ${(props) => props.theme.inputBackground || ColorPallete.listCardBack};
+  color: ${(props) => props.theme.text || ColorPallete.inputValueText};
   padding: 12px 15px;
-  border: 1px solid ${(props) => props.borderColor || props.theme.borderColor || "#ccc"};
+  border: 1px solid ${(props) => props.borderColor || props.theme.borderColor || ColorPallete.lightGrey};
   border-radius: 8px;
   font-size: 16px;
   margin-bottom: 10px;

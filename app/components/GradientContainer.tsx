@@ -5,6 +5,7 @@ import {
   LinearGradientPoint,
   LinearGradientProps,
 } from "expo-linear-gradient";
+import { ColorPallete } from "../constants/Colors";
 
 interface GradientContainerProps extends Omit<LinearGradientProps, "colors"> {
   colors: string[]; // At least two colors are required
@@ -19,7 +20,7 @@ interface GradientContainerProps extends Omit<LinearGradientProps, "colors"> {
 const GradientContainerBase = styled(
   LinearGradient
 ).attrs<GradientContainerProps>((props) => ({
-  colors: props.colors || ["#38ef7d", "#11998e"], // Default gradient colors
+  colors: props.colors || ColorPallete.greenGradient, // Default gradient colors
   start: props.start || { x: 0, y: 0 }, // Default gradient start point
   end: props.end || { x: 1, y: 0 }, // Default gradient end point
 }))<GradientContainerProps>`

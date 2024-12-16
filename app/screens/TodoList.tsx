@@ -15,7 +15,6 @@ import { useTodos } from "../contexts/TodosProvider";
 import Toast from "react-native-toast-message";
 import InputModal from "../components/InputModal";
 import { generateRandom2DigitNumber } from "../constants/Utils";
-import { useNetworkState } from "expo-network";
 
 // Typing the navigation prop for the WelcomeScreen
 type TodoListNavigationProps = NativeStackNavigationProp<
@@ -68,7 +67,6 @@ const TodoList: React.FC<TodoScreenProps> = ({ navigation }) => {
       }
     } catch (error) {
       console.error("Error fetching todos:", error);
-      alert("Failed to fetch todos. Please try again.");
     }
   };
 

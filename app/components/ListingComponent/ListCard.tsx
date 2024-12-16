@@ -5,6 +5,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import styled from "styled-components/native";
 import { Todo } from "../../hooks/useFetch";
 import debounce from "lodash.debounce"; // Import the debounce function
+import { ColorPallete } from "../../constants/Colors";
 
 type ListCardProps = {
   todo: Todo;
@@ -51,7 +52,7 @@ const ListCard: React.FC<ListCardProps> = ({
               onChangeText={setEditValue}
               autoFocus
               placeholder="Edit todo"
-              placeholderTextColor="#aaa"
+              placeholderTextColor={ColorPallete.placeholderTextColor}
               multiline
             />
           ) : (
@@ -69,11 +70,13 @@ const ListCard: React.FC<ListCardProps> = ({
               onPress={() => handleToggle(todo.id, !todo.completed)}
             >
               <MaterialIcons
-                name={
-                  todo.completed ? "check-box" : "check-box-outline-blank"
-                }
+                name={todo.completed ? "check-box" : "check-box-outline-blank"}
                 size={24}
-                color={todo.completed ? "#4CAF50" : "#666"}
+                color={
+                  todo.completed
+                    ? ColorPallete.buttonGreenBackground
+                    : ColorPallete.lightGrey
+                }
               />
             </TouchableOpacity>
           )}
@@ -83,11 +86,19 @@ const ListCard: React.FC<ListCardProps> = ({
             <>
               {isEditing ? (
                 <TouchableOpacity onPress={handleSave}>
-                  <MaterialIcons name="save" size={24} color="#4CAF50" />
+                  <MaterialIcons
+                    name="save"
+                    size={24}
+                    color={ColorPallete.buttonGreenBackground}
+                  />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity onPress={() => setIsEditing(true)}>
-                  <MaterialIcons name="edit" size={24} color="#1E88E5" />
+                  <MaterialIcons
+                    name="edit"
+                    size={24}
+                    color={ColorPallete.actionBack}
+                  />
                 </TouchableOpacity>
               )}
             </>
@@ -96,7 +107,7 @@ const ListCard: React.FC<ListCardProps> = ({
           {/* Delete Button */}
           {showActionButtons && (
             <TouchableOpacity onPress={() => onDelete?.(todo)}>
-              <MaterialIcons name="delete" size={24} color="#E53935" />
+              <MaterialIcons name="delete" size={24} color={ColorPallete.red} />
             </TouchableOpacity>
           )}
         </ButtonContainer>
@@ -109,12 +120,12 @@ export default ListCard;
 
 // Styled Components
 const CardWrapper = styled.View`
-  background-color: #fff;
+  background-color: ${ColorPallete.listCardBack};
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 10px;
   elevation: 3;
-  shadow-color: #000;
+  shadow-color: ${ColorPallete.black};
   shadow-offset: 0px 2px;
   shadow-opacity: 0.2;
   shadow-radius: 4px;
@@ -133,16 +144,20 @@ const ContentArea = styled.View`
 
 const StyledTextInput = styled.TextInput`
   border-bottom-width: 1px;
-  border-color: #ccc;
+  border-color: ${ColorPallete.lightGrey};
   font-size: 16px;
-  color: #333;
+  color: ${ColorPallete.black};
   flex-wrap: wrap;
 `;
 
 const StyledText = styled(Text)<{ completed: boolean }>`
   font-size: 16px;
-  color: ${(props) => (props.completed ? "#999" : "#333")};
-  text-decoration-line: ${(props) => (props.completed ? "line-through" : "none")};
+  color: ${(props) =>
+    props.completed
+      ? ColorPallete.todoCompletedText
+      : ColorPallete.todoPendingText};
+  text-decoration-line: ${(props) =>
+    props.completed ? "line-through" : "none"};
   flex-wrap: wrap;
 `;
 

@@ -3,7 +3,7 @@ import { ColorPallete } from "./Colors";
 export const lightTheme = {
   background: ColorPallete.white,
   text: ColorPallete.black,
-  buttonBackground: "#029816",
+  buttonBackground: ColorPallete.buttonGreenBackground,
   buttonText: ColorPallete.white,
   border: ColorPallete.grey,
 };
@@ -11,9 +11,9 @@ export const lightTheme = {
 export const darkTheme = {
   background: ColorPallete.black,
   text: ColorPallete.white,
-  buttonBackground: "#056619",
+  buttonBackground: ColorPallete.greenGradient[1],
   buttonText: ColorPallete.white,
-  border: "#444",
+  border: ColorPallete.darkBorder,
 };
 
 export type Theme = typeof lightTheme;

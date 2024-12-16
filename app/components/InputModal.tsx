@@ -41,7 +41,7 @@ const InputModal: React.FC<ReusableModalProps> = ({
             placeholder={placeholder}
             onChangeText={setInputValue}
             value={inputValue}
-            placeholderTextColor="#999"
+            placeholderTextColor={ColorPallete.todoCompletedText}
           />
           <ButtonRow>
             <StyledButton disabled={inputValue === ""} activeOpacity={1} onPress={handleAdd}>
